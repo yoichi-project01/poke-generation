@@ -1,4 +1,4 @@
-## 目次
+# 目次
 - [概要](#概要)
 - [メニュー](#メニュー)
 - [本編](#本編)
@@ -19,4 +19,8 @@
 **各年代のボタンをクリックするとその年代のページに遷移する**  
 ![b](https://github.com/yoichi-project01/poke-generation/assets/98115836/a1135030-29b0-4969-a9df-a7816bedd0d1) 
 # [世代](#世代)
-![c](https://github.com/yoichi-project01/poke-generation/assets/98115836/d09c6030-fb96-460b-aa03-0aa2d13b7e10)
+![c](https://github.com/yoichi-project01/poke-generation/assets/98115836/cec17299-753a-485d-80cb-eb52d45b3714)  
+**①：画像を表示している場所  
+②：現在時刻と発売日との差  
+③：発売日を表示している  
+④：変換ボタン**
