@@ -7,5 +7,6 @@
 ②：外伝ボタンをクリックすると外伝ページに遷移する  
 ③：現在時刻を表示
 # 本編
-
+![a](https://github.com/yoichi-project01/poke-generation/assets/98115836/61ae0f12-6b02-42be-bae2-745a4c0a13e2)
 # 外伝
+![b](https://github.com/yoichi-project01/poke-generation/assets/98115836/a1135030-29b0-4969-a9df-a7816bedd0d1)
