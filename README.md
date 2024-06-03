@@ -16,14 +16,14 @@
 ③：現在時刻を表示**
 # [本編](#本編)
 ![a](https://github.com/yoichi-project01/poke-generation/assets/98115836/61ae0f12-6b02-42be-bae2-745a4c0a13e2)  
-**各[世代ボタン](#世代)をクリックするとその世代のページに遷移する**  
+**各[世代ボタン](#タイトル)をクリックするとその世代のページに遷移する**  
 # [外伝](#外伝)   
 ![b](https://github.com/yoichi-project01/poke-generation/assets/98115836/a1135030-29b0-4969-a9df-a7816bedd0d1)  
 **各[年代ボタン](#年代)をクリックするとその年代のページに遷移する(表示している画像は作者の好み)**
 # [年代](#年代)
 ![f](https://github.com/yoichi-project01/poke-generation/assets/98115836/3c70b57d-ebeb-4973-86d0-26f9b1fcbe93)  
-**各[タイトルボタン](#世代)をクリックするとそのタイトルのページに遷移する**
-# [タイトル](#世代)
+**各[タイトルボタン](#タイトル)をクリックするとそのタイトルのページに遷移する**
+# [タイトル](#タイトル)
 ![c](https://github.com/yoichi-project01/poke-generation/assets/98115836/cec17299-753a-485d-80cb-eb52d45b3714)  
 **①：画像を表示  
 ②：現在時刻と発売日との差  
