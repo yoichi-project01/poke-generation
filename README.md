@@ -26,3 +26,4 @@
 ③：発売日を表示  
 ④：[変換ボタン](#変換ボタン)**
 # [変換ボタン](#変換ボタン)
+![time (2)](https://github.com/yoichi-project01/poke-generation/assets/98115836/8ebd3b3e-00e7-41d7-b55b-4c4712647357)
