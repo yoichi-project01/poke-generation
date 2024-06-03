@@ -17,7 +17,7 @@
 **各[世代ボタン](#世代)をクリックするとその世代のページに遷移する**  
 ![a](https://github.com/yoichi-project01/poke-generation/assets/98115836/61ae0f12-6b02-42be-bae2-745a4c0a13e2)  
 # [外伝](#外伝) 
-**各年代のボタンをクリックするとその年代のページに遷移する**  
+**各年代のボタンをクリックするとその年代のページに遷移する(表示している画像は作者の好み)**  
 ![b](https://github.com/yoichi-project01/poke-generation/assets/98115836/a1135030-29b0-4969-a9df-a7816bedd0d1) 
 # [世代](#世代)
 ![c](https://github.com/yoichi-project01/poke-generation/assets/98115836/cec17299-753a-485d-80cb-eb52d45b3714)  
