@@ -28,7 +28,7 @@
 ④：[変換ボタン](#変換ボタン)**
 # [年代](#年代)
 ![f](https://github.com/yoichi-project01/poke-generation/assets/98115836/3c70b57d-ebeb-4973-86d0-26f9b1fcbe93)  
-
+**各タイトルボタンをクリックするとそのタイトルのページに遷移する**
 # [変換ボタン](#変換ボタン)
 ![time (2)](https://github.com/yoichi-project01/poke-generation/assets/98115836/8ebd3b3e-00e7-41d7-b55b-4c4712647357)  
 **変換ボタンクリックで時間の表示形式を変換する**
