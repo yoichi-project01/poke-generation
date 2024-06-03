@@ -20,7 +20,7 @@
 ![b](https://github.com/yoichi-project01/poke-generation/assets/98115836/a1135030-29b0-4969-a9df-a7816bedd0d1) 
 # [世代](#世代)
 ![c](https://github.com/yoichi-project01/poke-generation/assets/98115836/cec17299-753a-485d-80cb-eb52d45b3714)  
-**①：画像を表示 
+**①：画像を表示  
 ②：現在時刻と発売日との差  
 ③：発売日を表示  
 ④：変換ボタン**
