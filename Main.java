@@ -1,4 +1,10 @@
-
+/*/**
+ * レビュアー
+ * D.K
+ * H.K
+ * S.K
+ * 
+ */
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
