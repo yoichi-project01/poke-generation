@@ -205,15 +205,15 @@ public class Poke_generation extends JFrame {
 
         // 画像とラベルを設定
         String[] images = {
-            "images/120x120/red_poke.jpg",
-            "images/120x120/gold_poke.jpg",
-            "images/120x120/ruby_poke.jpg",
-            "images/120x120/diamond_poke.jpg",
-            "images/120x120/black_poke.jpg",
-            "images/120x120/x_poke.jpg",
-            "images/120x120/sun_poke.jpg",
-            "images/120x120/sword_poke.jpg",
-            "images/120x120/scarlet_poke.jpg"
+            "images/170x170/red_poke.jpg",
+            "images/170x170/gold_poke.jpg",
+            "images/170x170/ruby_poke.jpg",
+            "images/170x170/diamond_poke.jpg",
+            "images/170x170/black_poke.jpg",
+            "images/170x170/x_poke.jpg",
+            "images/170x170/sun_poke.jpg",
+            "images/170x170/sword_poke.jpg",
+            "images/170x170/scarlet_poke.jpg"
         };
         String[] labels = {
             "1世代", "2世代", "3世代", "4世代", "5世代", "6世代", "7世代", "8世代", "9世代"
@@ -221,15 +221,15 @@ public class Poke_generation extends JFrame {
 
         // ボタンアクション
         ActionListener[] actions = {
-            e -> showGenerationPanel("images/300x300/red_poke.jpg", "images/300x300/green_poke.jpg", LocalDateTime.of(1996, 2, 27, 0, 0)),
-            e -> showGenerationPanel("images/300x300/gold_poke.jpg", "images/300x300/silver_poke.jpg", LocalDateTime.of(1999, 11, 21, 0, 0)),
-            e -> showGenerationPanel("images/300x300/ruby_poke.jpg", "images/300x300/sapphire_poke.jpg", LocalDateTime.of(2002, 11, 21, 0, 0)),
-            e -> showGenerationPanel("images/300x300/diamond_poke.jpg", "images/300x300/pearl_poke.jpg", LocalDateTime.of(2006, 9, 28, 0, 0)),
-            e -> showGenerationPanel("images/300x300/black_poke.jpg", "images/300x300/white_poke.jpg", LocalDateTime.of(2010, 9, 18, 0, 0)),
-            e -> showGenerationPanel("images/300x300/x_poke.jpg", "images/300x300/y_poke.jpg", LocalDateTime.of(2013, 10, 12, 0, 0)),
-            e -> showGenerationPanel("images/300x300/sun_poke.jpg", "images/300x300/moon_poke.jpg", LocalDateTime.of(2016, 11, 18, 0, 0)),
-            e -> showGenerationPanel("images/300x300/sword_poke.jpg", "images/300x300/shield_poke.jpg", LocalDateTime.of(2019, 11, 15, 0, 0)),
-            e -> showGenerationPanel("images/300x300/scarlet_poke.jpg", "images/300x300/violet_poke.jpg", LocalDateTime.of(2022, 11, 18, 0, 0))
+            e -> showGenerationPanel1x2("images/300x300/red_poke.jpg", "images/300x300/green_poke.jpg", LocalDateTime.of(1996, 2, 27, 0, 0)),
+            e -> showGenerationPanel1x2("images/300x300/gold_poke.jpg", "images/300x300/silver_poke.jpg", LocalDateTime.of(1999, 11, 21, 0, 0)),
+            e -> showGenerationPanel1x2("images/300x300/ruby_poke.jpg", "images/300x300/sapphire_poke.jpg", LocalDateTime.of(2002, 11, 21, 0, 0)),
+            e -> showGenerationPanel1x2("images/300x300/diamond_poke.jpg", "images/300x300/pearl_poke.jpg", LocalDateTime.of(2006, 9, 28, 0, 0)),
+            e -> showGenerationPanel1x2("images/300x300/black_poke.jpg", "images/300x300/white_poke.jpg", LocalDateTime.of(2010, 9, 18, 0, 0)),
+            e -> showGenerationPanel1x2("images/300x300/x_poke.jpg", "images/300x300/y_poke.jpg", LocalDateTime.of(2013, 10, 12, 0, 0)),
+            e -> showGenerationPanel1x2("images/300x300/sun_poke.jpg", "images/300x300/moon_poke.jpg", LocalDateTime.of(2016, 11, 18, 0, 0)),
+            e -> showGenerationPanel1x2("images/300x300/sword_poke.jpg", "images/300x300/shield_poke.jpg", LocalDateTime.of(2019, 11, 15, 0, 0)),
+            e -> showGenerationPanel1x2("images/300x300/scarlet_poke.jpg", "images/300x300/violet_poke.jpg", LocalDateTime.of(2022, 11, 18, 0, 0))
         };
 
         // ボタン作成
@@ -298,19 +298,62 @@ public class Poke_generation extends JFrame {
         repaint();
     }
 
-    private void showGenerationPanel(String imagePath1, String imagePath2, LocalDateTime releaseDate) {
+    private void showGenerationPanel1x2(String imagePath1, String imagePath2, LocalDateTime releaseDate) {
         // もろもろ関数
         menu();
 
         // 画像・時間パネルを作成
-        JPanel imagePanel = new JPanel(new GridLayout(1, 2));
-        JPanel timePanel = new JPanel(new GridLayout(3, 1));
+        JPanel imagePanel = new JPanel(new GridLayout(1, 2));// 1x2のグリッドレイアウトを設定
+        JPanel timePanel = new JPanel(new GridLayout(3, 1));// 3x1のグリッドレイアウトを設定
 
         // 画像を添付・パネルに追加
         JLabel label1 = new JLabel(new ImageIcon(imagePath1));
         JLabel label2 = new JLabel(new ImageIcon(imagePath2));
         imagePanel.add(label1);
         imagePanel.add(label2);
+
+        // 本編と外伝ボタンクリック時のアクション
+        buttonMS();
+
+        // 発売日と差のラベル関数
+        difference_label();
+
+        // 時間変換ボタン関数
+        conversion();
+
+        // 発売日
+        specificTime = releaseDate;
+        String specificTimeFormatted = specificTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+        specificTimeLabel.setText("発売日: " + specificTimeFormatted);
+
+        // 差の表示の仕方関数
+        difference();
+
+        // ラベルをパネルに追加
+        timePanel.add(differenceLabel);
+        timePanel.add(specificTimeLabel);
+        timePanel.add(conversionButton);
+
+        // パネルをフレームに追加
+        getContentPane().add(imagePanel, BorderLayout.CENTER);
+        getContentPane().add(timePanel, BorderLayout.SOUTH);
+
+        // パネルを再検討
+        revalidate();
+        repaint();
+    }
+
+    private void showGenerationPanel1x1(String imagePath1,LocalDateTime releaseDate) {
+        // もろもろ関数
+        menu();
+
+        // 画像・時間パネルを作成
+        JPanel imagePanel = new JPanel(new GridLayout(1, 1));// 1x1のグリッドレイアウトを設定
+        JPanel timePanel = new JPanel(new GridLayout(3, 1));// 3x1のグリッドレイアウトを設定
+
+        // 画像を添付・パネルに追加
+        JLabel label1 = new JLabel(new ImageIcon(imagePath1));
+        imagePanel.add(label1);
 
         // 本編と外伝ボタンクリック時のアクション
         buttonMS();
@@ -366,7 +409,10 @@ public class Poke_generation extends JFrame {
 
         // ボタンアクション
         ActionListener[] actions = {
-            e -> blue(), e-> stadium(), e->pika(), e->gb(), 
+            e -> showGenerationPanel1x1("images/300x300/blue_poke.jpg",LocalDateTime.of(1996, 10, 15, 0, 0, 0)), 
+            e -> showGenerationPanel1x1("images/300x300/stadium_poke.jpg",LocalDateTime.of(1998, 8, 1, 0, 0, 0)), 
+            e -> showGenerationPanel1x1("images/300x300/pika_poke.jpg",LocalDateTime.of(1998, 9, 12, 0, 0, 0)), 
+            e -> showGenerationPanel1x1("images/300x300/gb_poke.jpg",LocalDateTime.of(1998, 12, 18, 0, 0, 0)), 
         };
 
         // ボタン作成
@@ -377,198 +423,6 @@ public class Poke_generation extends JFrame {
 
         // パネルをフレームに追加
         getContentPane().add(gPanel);
-
-        // レイアウトを再検討
-        revalidate();
-        repaint();
-    }
-
-    private void blue() {
-        // もろもろ関数
-        menu();
-
-        // 画像パネルを作成
-        JPanel imagePanel = new JPanel(new GridLayout(1, 1));
-
-        // 時刻パネルを作成
-        JPanel timePanel = new JPanel(new GridLayout(3, 1));
-
-        // 画像を添付
-        ImageIcon g1 = new ImageIcon("images/300x300/blue_poke.jpg");
-        JLabel label = new JLabel(g1);
-
-        // 画像をパネルに追加
-        imagePanel.add(label);
-
-        // 本編と外伝ボタンクリック時のアクション
-        buttonMS();
-
-        // 発売日と差のラベル関数
-        difference_label();
-
-        // 発売日
-        specificTime = LocalDateTime.of(1996, 10, 15, 0, 0, 0);
-        String specificTimeFormatted = specificTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-        specificTimeLabel.setText("発売日: " + specificTimeFormatted);
-
-        // 差を表示の仕方の関数
-        difference();
-
-        // 時間変換ボタン関数
-        conversion();
-
-        // ラベルをパネルに追加
-        timePanel.add(differenceLabel);
-        timePanel.add(specificTimeLabel);
-        timePanel.add(conversionButton);
-
-        // パネルをフレームに追加
-        getContentPane().add(imagePanel,BorderLayout.CENTER);
-        getContentPane().add(timePanel,BorderLayout.SOUTH);
-
-        // レイアウトを再検討
-        revalidate();
-        repaint();
-    }
-
-    private void stadium() {
-        // もろもろ関数
-        menu();
-
-        // 画像パネルを作成
-        JPanel imagePanel = new JPanel(new GridLayout(1, 1));
-
-        // 時刻パネルを作成
-        JPanel timePanel = new JPanel(new GridLayout(3, 1));
-
-        // 画像を添付
-        ImageIcon g1 = new ImageIcon("images/300x300/stadium_poke.jpg");
-        JLabel label = new JLabel(g1);
-
-        // 画像をパネルに追加
-        imagePanel.add(label);
-
-        // 本編と外伝ボタンクリック時のアクション
-        buttonMS();
-
-        // 発売日と差のラベル関数
-        difference_label();
-
-        // 発売日
-        specificTime = LocalDateTime.of(1998, 8, 1, 0, 0, 0);
-        String specificTimeFormatted = specificTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-        specificTimeLabel.setText("発売日: " + specificTimeFormatted);
-
-        // 差を表示の仕方の関数
-        difference();
-
-        // 時間変換ボタン関数
-        conversion();
-
-        // ラベルをパネルに追加
-        timePanel.add(differenceLabel);
-        timePanel.add(specificTimeLabel);
-        timePanel.add(conversionButton);
-
-        // パネルをフレームに追加
-        getContentPane().add(imagePanel,BorderLayout.CENTER);
-        getContentPane().add(timePanel,BorderLayout.SOUTH);
-
-        // レイアウトを再検討
-        revalidate();
-        repaint();
-    }
-
-    private void pika() {
-        // もろもろ関数
-        menu();
-
-        // 画像パネルを作成
-        JPanel imagePanel = new JPanel(new GridLayout(1, 1));
-
-        // 時刻パネルを作成
-        JPanel timePanel = new JPanel(new GridLayout(3, 1));
-
-        // 画像を添付
-        ImageIcon g1 = new ImageIcon("images/300x300/pika_poke.jpg");
-        JLabel label = new JLabel(g1);
-
-        // 画像をパネルに追加
-        imagePanel.add(label);
-
-        // 本編と外伝ボタンクリック時のアクション
-        buttonMS();
-
-        // 発売日と差のラベル関数
-        difference_label();
-
-        // 発売日
-        specificTime = LocalDateTime.of(1998, 9, 12, 0, 0, 0);
-        String specificTimeFormatted = specificTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-        specificTimeLabel.setText("発売日: " + specificTimeFormatted);
-
-        // 差を表示の仕方の関数
-        difference();
-
-        // 時間変換ボタン関数
-        conversion();
-
-        // ラベルをパネルに追加
-        timePanel.add(differenceLabel);
-        timePanel.add(specificTimeLabel);
-        timePanel.add(conversionButton);
-
-        // パネルをフレームに追加
-        getContentPane().add(imagePanel,BorderLayout.CENTER);
-        getContentPane().add(timePanel,BorderLayout.SOUTH);
-
-        // レイアウトを再検討
-        revalidate();
-        repaint();
-    }
-
-    private void gb() {
-        // もろもろ関数
-        menu();
-
-        // 画像パネルを作成
-        JPanel imagePanel = new JPanel(new GridLayout(1, 1));
-
-        // 時刻パネルを作成
-        JPanel timePanel = new JPanel(new GridLayout(3, 1));
-
-        // 画像を添付
-        ImageIcon g1 = new ImageIcon("images/300x300/gb_poke.jpg");
-        JLabel label = new JLabel(g1);
-
-        // 画像をパネルに追加
-        imagePanel.add(label);
-
-        // 本編と外伝ボタンクリック時のアクション
-        buttonMS();
-
-        // 発売日と差のラベル関数
-        difference_label();
-
-        // 発売日
-        specificTime = LocalDateTime.of(1998, 12, 18, 0, 0, 0);
-        String specificTimeFormatted = specificTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-        specificTimeLabel.setText("発売日: " + specificTimeFormatted);
-
-        // 差を表示の仕方の関数
-        difference();
-
-        // 時間変換ボタン関数
-        conversion();
-
-        // ラベルをパネルに追加
-        timePanel.add(differenceLabel);
-        timePanel.add(specificTimeLabel);
-        timePanel.add(conversionButton);
-
-        // パネルをフレームに追加
-        getContentPane().add(imagePanel,BorderLayout.CENTER);
-        getContentPane().add(timePanel,BorderLayout.SOUTH);
 
         // レイアウトを再検討
         revalidate();
@@ -608,18 +462,18 @@ public class Poke_generation extends JFrame {
 
         // ボタンアクション
         ActionListener[] actions = {
-            e -> crystal(), 
-            e -> gb2(), 
-            e -> coliseum(), 
-            e -> showGenerationPanel("images/300x300/r_red_poke.jpg", "images/300x300/r_green_poke.jpg", LocalDateTime.of(2004, 1, 29, 0, 0)),
-            e -> em(),
-            e -> xd(),
-            e -> showGenerationPanel("images/300x300/wonder_blue_poke.jpg", "images/300x300/wonder_red_poke.jpg", LocalDateTime.of(2005, 11, 17, 0, 0)),
-            e -> ranger(), 
-            e -> showGenerationPanel("images/300x300/wonder_time_poke.png", "images/300x300/wonder_dark_poke.png", LocalDateTime.of(2007, 9, 13, 0, 0)),
-            e -> platinum(), 
-            e -> sky(), 
-            e -> showGenerationPanel("images/300x300/r_gold_poke.jpg", "images/300x300/r_silver_poke.jpg", LocalDateTime.of(2009, 9, 12, 0, 0))
+            e -> showGenerationPanel1x1("images/300x300/crystal_poke.jpg",LocalDateTime.of(2000, 12, 14, 0, 0, 0)), 
+            e -> showGenerationPanel1x1("images/300x300/gb2_poke.jpg",LocalDateTime.of(2001, 3, 28, 0, 0, 0)), 
+            e -> showGenerationPanel1x1("images/300x300/coliseum_poke.jpg",LocalDateTime.of(2003, 11, 21, 0, 0, 0)), 
+            e -> showGenerationPanel1x2("images/300x300/r_red_poke.jpg", "images/300x300/r_green_poke.jpg", LocalDateTime.of(2004, 1, 29, 0, 0)),
+            e -> showGenerationPanel1x1("images/300x300/emerald_poke.jpg",LocalDateTime.of(2004, 9, 16, 0, 0, 0)),
+            e -> showGenerationPanel1x1("images/300x300/xd_poke.jpg",LocalDateTime.of(2005, 8, 4, 0, 0, 0)),
+            e -> showGenerationPanel1x2("images/300x300/wonder_blue_poke.jpg", "images/300x300/wonder_red_poke.jpg", LocalDateTime.of(2005, 11, 17, 0, 0)),
+            e -> showGenerationPanel1x1("images/300x300/ranger_poke.png",LocalDateTime.of(2006, 3, 23, 0, 0, 0)), 
+            e -> showGenerationPanel1x2("images/300x300/wonder_time_poke.png", "images/300x300/wonder_dark_poke.png", LocalDateTime.of(2007, 9, 13, 0, 0)),
+            e -> showGenerationPanel1x1("images/300x300/platinum_poke.png",LocalDateTime.of(2008, 9, 13, 0, 0, 0)), 
+            e -> showGenerationPanel1x1("images/300x300/wonder_sky_poke.jpg",LocalDateTime.of(2009, 4, 18, 0, 0, 0)), 
+            e -> showGenerationPanel1x2("images/300x300/r_gold_poke.jpg", "images/300x300/r_silver_poke.jpg", LocalDateTime.of(2009, 9, 12, 0, 0))
         };
 
         // ボタン作成
@@ -630,390 +484,6 @@ public class Poke_generation extends JFrame {
 
         // パネルをフレームに追加
         getContentPane().add(gPanel);
-
-        // レイアウトを再検討
-        revalidate();
-        repaint();
-    }
-
-    private void crystal() {
-        // もろもろ関数
-        menu();
-
-        // 画像パネルを作成
-        JPanel imagePanel = new JPanel(new GridLayout(1, 1));
-
-        // 時刻パネルを作成
-        JPanel timePanel = new JPanel(new GridLayout(3, 1));
-
-        // 画像を添付
-        ImageIcon g1 = new ImageIcon("images/300x300/crystal_poke.jpg");
-        JLabel label = new JLabel(g1);
-
-        // 画像をパネルに追加
-        imagePanel.add(label);
-
-        // 本編と外伝ボタンクリック時のアクション
-        buttonMS();
-
-        // 発売日と差のラベル関数
-        difference_label();
-
-        // 発売日
-        specificTime = LocalDateTime.of(2000, 12, 14, 0, 0, 0);
-        String specificTimeFormatted = specificTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-        specificTimeLabel.setText("発売日: " + specificTimeFormatted);
-
-        // 差を表示の仕方の関数
-        difference();
-
-        // 時間変換ボタン関数
-        conversion();
-
-        // ラベルをパネルに追加
-        timePanel.add(differenceLabel);
-        timePanel.add(specificTimeLabel);
-        timePanel.add(conversionButton);
-
-        // パネルをフレームに追加
-        getContentPane().add(imagePanel,BorderLayout.CENTER);
-        getContentPane().add(timePanel,BorderLayout.SOUTH);
-
-        // レイアウトを再検討
-        revalidate();
-        repaint();
-    }
-
-    private void gb2() {
-        // もろもろ関数
-        menu();
-
-        // 画像パネルを作成
-        JPanel imagePanel = new JPanel(new GridLayout(1, 1));
-
-        // 時刻パネルを作成
-        JPanel timePanel = new JPanel(new GridLayout(3, 1));
-
-        // 画像を添付
-        ImageIcon g1 = new ImageIcon("images/300x300/gb2_poke.jpg");
-        JLabel label = new JLabel(g1);
-
-        // 画像をパネルに追加
-        imagePanel.add(label);
-
-        // 本編と外伝ボタンクリック時のアクション
-        buttonMS();
-
-        // 発売日と差のラベル関数
-        difference_label();
-
-        // 発売日
-        specificTime = LocalDateTime.of(2001, 3, 28, 0, 0, 0);
-        String specificTimeFormatted = specificTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-        specificTimeLabel.setText("発売日: " + specificTimeFormatted);
-
-        // 差を表示の仕方の関数
-        difference();
-
-        // 時間変換ボタン関数
-        conversion();
-
-        // ラベルをパネルに追加
-        timePanel.add(differenceLabel);
-        timePanel.add(specificTimeLabel);
-        timePanel.add(conversionButton);
-
-        // パネルをフレームに追加
-        getContentPane().add(imagePanel,BorderLayout.CENTER);
-        getContentPane().add(timePanel,BorderLayout.SOUTH);
-
-        // レイアウトを再検討
-        revalidate();
-        repaint();
-    }
-
-    private void coliseum() {
-        // もろもろ関数
-        menu();
-
-        // 画像パネルを作成
-        JPanel imagePanel = new JPanel(new GridLayout(1, 1));
-
-        // 時刻パネルを作成
-        JPanel timePanel = new JPanel(new GridLayout(3, 1));
-
-        // 画像を添付
-        ImageIcon g1 = new ImageIcon("images/300x300/coliseum_poke.jpg");
-        JLabel label = new JLabel(g1);
-
-        // 画像をパネルに追加
-        imagePanel.add(label);
-
-        // 本編と外伝ボタンクリック時のアクション
-        buttonMS();
-
-        // 発売日と差のラベル関数
-        difference_label();
-
-        // 発売日
-        specificTime = LocalDateTime.of(2003, 11, 21, 0, 0, 0);
-        String specificTimeFormatted = specificTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-        specificTimeLabel.setText("発売日: " + specificTimeFormatted);
-
-        // 差を表示の仕方の関数
-        difference();
-
-        // 時間変換ボタン関数
-        conversion();
-
-        // ラベルをパネルに追加
-        timePanel.add(differenceLabel);
-        timePanel.add(specificTimeLabel);
-        timePanel.add(conversionButton);
-
-        // パネルをフレームに追加
-        getContentPane().add(imagePanel,BorderLayout.CENTER);
-        getContentPane().add(timePanel,BorderLayout.SOUTH);
-
-        // レイアウトを再検討
-        revalidate();
-        repaint();
-    }
-
-    private void em() {
-        // もろもろ関数
-        menu();
-
-        // 画像パネルを作成
-        JPanel imagePanel = new JPanel(new GridLayout(1, 1));
-
-        // 時刻パネルを作成
-        JPanel timePanel = new JPanel(new GridLayout(3, 1));
-
-        // 画像を添付
-        ImageIcon g1 = new ImageIcon("images/300x300/emerald_poke.jpg");
-        JLabel label = new JLabel(g1);
-
-        // 画像をパネルに追加
-        imagePanel.add(label);
-
-        // 本編と外伝ボタンクリック時のアクション
-        buttonMS();
-
-        // 発売日と差のラベル関数
-        difference_label();
-
-        // 発売日
-        specificTime = LocalDateTime.of(2004, 9, 16, 0, 0, 0);
-        String specificTimeFormatted = specificTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-        specificTimeLabel.setText("発売日: " + specificTimeFormatted);
-
-        // 差を表示の仕方の関数
-        difference();
-
-        // 時間変換ボタン関数
-        conversion();
-
-        // ラベルをパネルに追加
-        timePanel.add(differenceLabel);
-        timePanel.add(specificTimeLabel);
-        timePanel.add(conversionButton);
-
-        // パネルをフレームに追加
-        getContentPane().add(imagePanel,BorderLayout.CENTER);
-        getContentPane().add(timePanel,BorderLayout.SOUTH);
-
-        // レイアウトを再検討
-        revalidate();
-        repaint();
-    }
-
-    private void xd() {
-        // もろもろ関数
-        menu();
-
-        // 画像パネルを作成
-        JPanel imagePanel = new JPanel(new GridLayout(1, 1));
-
-        // 時刻パネルを作成
-        JPanel timePanel = new JPanel(new GridLayout(3, 1));
-
-        // 画像を添付
-        ImageIcon g1 = new ImageIcon("images/300x300/xd_poke.jpg");
-        JLabel label = new JLabel(g1);
-
-        // 画像をパネルに追加
-        imagePanel.add(label);
-
-        // 本編と外伝ボタンクリック時のアクション
-        buttonMS();
-
-        // 発売日と差のラベル関数
-        difference_label();
-
-        // 発売日
-        specificTime = LocalDateTime.of(2005, 8, 4, 0, 0, 0);
-        String specificTimeFormatted = specificTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-        specificTimeLabel.setText("発売日: " + specificTimeFormatted);
-
-        // 差を表示の仕方の関数
-        difference();
-
-        // 時間変換ボタン関数
-        conversion();
-
-        // ラベルをパネルに追加
-        timePanel.add(differenceLabel);
-        timePanel.add(specificTimeLabel);
-        timePanel.add(conversionButton);
-
-        // パネルをフレームに追加
-        getContentPane().add(imagePanel,BorderLayout.CENTER);
-        getContentPane().add(timePanel,BorderLayout.SOUTH);
-
-        // レイアウトを再検討
-        revalidate();
-        repaint();
-    }
-
-    private void ranger() {
-        // もろもろ関数
-        menu();
-
-        // 画像パネルを作成
-        JPanel imagePanel = new JPanel(new GridLayout(1, 1));
-
-        // 時刻パネルを作成
-        JPanel timePanel = new JPanel(new GridLayout(3, 1));
-
-        // 画像を添付
-        ImageIcon g1 = new ImageIcon("images/300x300/ranger_poke.png");
-        JLabel label = new JLabel(g1);
-
-        // 画像をパネルに追加
-        imagePanel.add(label);
-
-        // 本編と外伝ボタンクリック時のアクション
-        buttonMS();
-
-        // 発売日と差のラベル関数
-        difference_label();
-
-        // 発売日
-        specificTime = LocalDateTime.of(2006, 3, 23, 0, 0, 0);
-        String specificTimeFormatted = specificTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-        specificTimeLabel.setText("発売日: " + specificTimeFormatted);
-
-        // 差を表示の仕方の関数
-        difference();
-
-        // 時間変換ボタン関数
-        conversion();
-
-        // ラベルをパネルに追加
-        timePanel.add(differenceLabel);
-        timePanel.add(specificTimeLabel);
-        timePanel.add(conversionButton);
-
-        // パネルをフレームに追加
-        getContentPane().add(imagePanel,BorderLayout.CENTER);
-        getContentPane().add(timePanel,BorderLayout.SOUTH);
-
-        // レイアウトを再検討
-        revalidate();
-        repaint();
-    }
-
-    private void platinum() {
-        // もろもろ関数
-        menu();
-
-        // 画像パネルを作成
-        JPanel imagePanel = new JPanel(new GridLayout(1, 1));
-
-        // 時刻パネルを作成
-        JPanel timePanel = new JPanel(new GridLayout(3, 1));
-
-        // 画像を添付
-        ImageIcon g1 = new ImageIcon("images/300x300/platinum_poke.png");
-        JLabel label = new JLabel(g1);
-
-        // 画像をパネルに追加
-        imagePanel.add(label);
-
-        // 本編と外伝ボタンクリック時のアクション
-        buttonMS();
-
-        // 発売日と差のラベル関数
-        difference_label();
-
-        // 発売日
-        specificTime = LocalDateTime.of(2008, 9, 13, 0, 0, 0);
-        String specificTimeFormatted = specificTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-        specificTimeLabel.setText("発売日: " + specificTimeFormatted);
-
-        // 差を表示の仕方の関数
-        difference();
-
-        // 時間変換ボタン関数
-        conversion();
-
-        // ラベルをパネルに追加
-        timePanel.add(differenceLabel);
-        timePanel.add(specificTimeLabel);
-        timePanel.add(conversionButton);
-
-        // パネルをフレームに追加
-        getContentPane().add(imagePanel,BorderLayout.CENTER);
-        getContentPane().add(timePanel,BorderLayout.SOUTH);
-
-        // レイアウトを再検討
-        revalidate();
-        repaint();
-    }
-
-    private void sky() {
-        // もろもろ関数
-        menu();
-
-        // 画像パネルを作成
-        JPanel imagePanel = new JPanel(new GridLayout(1, 1));
-
-        // 時刻パネルを作成
-        JPanel timePanel = new JPanel(new GridLayout(3, 1));
-
-        // 画像を添付
-        ImageIcon g1 = new ImageIcon("images/300x300/wonder_sky_poke.jpg");
-        JLabel label = new JLabel(g1);
-
-        // 画像をパネルに追加
-        imagePanel.add(label);
-
-        // 本編と外伝ボタンクリック時のアクション
-        buttonMS();
-
-        // 発売日と差のラベル関数
-        difference_label();
-
-        // 発売日
-        specificTime = LocalDateTime.of(2009, 4, 18, 0, 0, 0);
-        String specificTimeFormatted = specificTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-        specificTimeLabel.setText("発売日: " + specificTimeFormatted);
-
-        // 差を表示の仕方の関数
-        difference();
-
-        // 時間変換ボタン関数
-        conversion();
-
-        // ラベルをパネルに追加
-        timePanel.add(differenceLabel);
-        timePanel.add(specificTimeLabel);
-        timePanel.add(conversionButton);
-
-        // パネルをフレームに追加
-        getContentPane().add(imagePanel,BorderLayout.CENTER);
-        getContentPane().add(timePanel,BorderLayout.SOUTH);
 
         // レイアウトを再検討
         revalidate();
@@ -1032,10 +502,14 @@ public class Poke_generation extends JFrame {
 
         // 画像とラベルを設定
         String[] images = {
-            "images/190x190/gb_poke.jpg",
-            "images/190x190/coliseum_poke.jpg",
-            "images/190x190/usun_poke.jpg",
-            "images/190x190/a_legends_poke.jpg",
+            "images/120x120/black2_poke.jpg",
+            "images/120x120/r_ruby_poke.jpg",
+            "images/120x120/wonder_hyper_poke.jpg",
+            "images/120x120/vc_red_poke.png",
+            "images/120x120/vc_gold_poke.png",
+            "images/120x120/usun_poke.jpg",
+            "images/120x120/vc_crystal_poke.png",
+            "images/120x120/r_pika_poke.jpg"
         };
         String[] labels = {
             "BW2","ORAS","超ポケダン","VC赤緑青ピカ","VC金銀","USUM","VCクリスタル","ピカブイ"
@@ -1043,14 +517,14 @@ public class Poke_generation extends JFrame {
 
         // ボタンアクション
         ActionListener[] actions = {
-            e -> showGenerationPanel("images/300x300/black2_poke.jpg", "images/300x300/white2_poke.jpg", LocalDateTime.of(2012, 6, 23, 0, 0)),
-            e -> showGenerationPanel("images/300x300/r_ruby_poke.jpg", "images/300x300/r_sapphire_poke.jpg", LocalDateTime.of(2014, 11, 21, 0, 0)),
-            e -> hyper(),
+            e -> showGenerationPanel1x2("images/300x300/black2_poke.jpg", "images/300x300/white2_poke.jpg", LocalDateTime.of(2012, 6, 23, 0, 0)),
+            e -> showGenerationPanel1x2("images/300x300/r_ruby_poke.jpg", "images/300x300/r_sapphire_poke.jpg", LocalDateTime.of(2014, 11, 21, 0, 0)),
+            e -> showGenerationPanel1x1("images/300x300/wonder_hyper_poke.jpg",LocalDateTime.of(2015, 9, 17, 0, 0, 0)),
             e -> vc1(),
-            e -> showGenerationPanel("images/300x300/vc_gold_poke.png", "images/300x300/vc_silver_poke.png", LocalDateTime.of(2017, 9, 22, 0, 0)),
-            e -> showGenerationPanel("images/300x300/usun_poke.jpg", "images/300x300/umoo_poke.jpg", LocalDateTime.of(2017, 11, 17, 0, 0)),
-            e -> vc3(),
-            e -> showGenerationPanel("images/300x300/r_pika_poke.jpg", "images/300x300/r_eev.jpg", LocalDateTime.of(2018, 11, 16, 0, 0))
+            e -> showGenerationPanel1x2("images/300x300/vc_gold_poke.png", "images/300x300/vc_silver_poke.png", LocalDateTime.of(2017, 9, 22, 0, 0)),
+            e -> showGenerationPanel1x2("images/300x300/usun_poke.jpg", "images/300x300/umoo_poke.jpg", LocalDateTime.of(2017, 11, 17, 0, 0)),
+            e -> showGenerationPanel1x1("images/300x300/vc_crystal_poke.png",LocalDateTime.of(2018, 1, 26, 0, 0, 0)),
+            e -> showGenerationPanel1x2("images/300x300/r_pika_poke.jpg", "images/300x300/r_eev.jpg", LocalDateTime.of(2018, 11, 16, 0, 0))
         };
 
         // ボタン作成
@@ -1061,54 +535,6 @@ public class Poke_generation extends JFrame {
 
         // パネルをフレームに追加
         getContentPane().add(gPanel);
-
-        // レイアウトを再検討
-        revalidate();
-        repaint();
-    }
-
-    private void hyper() {
-        // もろもろ関数
-        menu();
-
-        // 画像パネルを作成
-        JPanel imagePanel = new JPanel(new GridLayout(1, 2));
-
-        // 時刻パネルを作成
-        JPanel timePanel = new JPanel(new GridLayout(3, 1));
-
-        // 画像を添付
-        ImageIcon g1 = new ImageIcon("images/300x300/wonder_hyper_poke.jpg");
-        JLabel label = new JLabel(g1);
-
-        // 画像をパネルに追加
-        imagePanel.add(label);
-
-        // 本編と外伝ボタンクリック時のアクション
-        buttonMS();
-
-        // 発売日と差のラベル関数
-        difference_label();
-
-        // 発売日
-        specificTime = LocalDateTime.of(2015, 9, 17, 0, 0, 0);
-        String specificTimeFormatted = specificTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-        specificTimeLabel.setText("発売日: " + specificTimeFormatted);
-
-        // 差を表示の仕方の関数
-        difference();
-
-        // 時間変換ボタン関数
-        conversion();
-
-        // ラベルをパネルに追加
-        timePanel.add(differenceLabel);
-        timePanel.add(specificTimeLabel);
-        timePanel.add(conversionButton);
-
-        // パネルをフレームに追加
-        getContentPane().add(imagePanel,BorderLayout.CENTER);
-        getContentPane().add(timePanel,BorderLayout.SOUTH);
 
         // レイアウトを再検討
         revalidate();
@@ -1172,54 +598,6 @@ public class Poke_generation extends JFrame {
         repaint();
     }
 
-    private void vc3() {
-        // もろもろ関数
-        menu();
-
-        // 画像パネルを作成
-        JPanel imagePanel = new JPanel(new GridLayout(1, 2));
-
-        // 時刻パネルを作成
-        JPanel timePanel = new JPanel(new GridLayout(3, 1));
-
-        // 画像を添付
-        ImageIcon g1 = new ImageIcon("images/300x300/vc_crystal_poke.png");
-        JLabel label = new JLabel(g1);
-
-        // 画像をパネルに追加
-        imagePanel.add(label);
-
-        // 本編と外伝ボタンクリック時のアクション
-        buttonMS();
-
-        // 発売日と差のラベル関数
-        difference_label();
-
-        // 発売日
-        specificTime = LocalDateTime.of(2018, 1, 26, 0, 0, 0);
-        String specificTimeFormatted = specificTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-        specificTimeLabel.setText("発売日: " + specificTimeFormatted);
-
-        // 差を表示の仕方の関数
-        difference();
-
-        // 時間変換ボタン関数
-        conversion();
-
-        // ラベルをパネルに追加
-        timePanel.add(differenceLabel);
-        timePanel.add(specificTimeLabel);
-        timePanel.add(conversionButton);
-
-        // パネルをフレームに追加
-        getContentPane().add(imagePanel,BorderLayout.CENTER);
-        getContentPane().add(timePanel,BorderLayout.SOUTH);
-
-        // レイアウトを再検討
-        revalidate();
-        repaint();
-    }
-
     private void g4sub(){
         // もろもろ関数
         menu();
@@ -1241,8 +619,8 @@ public class Poke_generation extends JFrame {
 
         // ボタンアクション
         ActionListener[] actions = {
-            e -> showGenerationPanel(getWarningString(), getName(), specificTime),
-            e -> legends1()
+            e -> showGenerationPanel1x2("images/300x300/r_diamond_poke.jpg", "images/300x300/r_pearl_poke.jpg", LocalDateTime.of(2021, 11, 19, 0, 0)),
+            e -> showGenerationPanel1x1("images/300x300/a_legends_poke.jpg",LocalDateTime.of(2022, 1, 28, 0, 0, 0))
         };
 
         // ボタン作成
@@ -1253,54 +631,6 @@ public class Poke_generation extends JFrame {
 
         // パネルをフレームに追加
         getContentPane().add(gPanel);
-
-        // レイアウトを再検討
-        revalidate();
-        repaint();
-    }
-
-    private void legends1() {
-        // もろもろ関数
-        menu();
-
-        // 画像パネルを作成
-        JPanel imagePanel = new JPanel(new GridLayout(1, 2));
-
-        // 時刻パネルを作成
-        JPanel timePanel = new JPanel(new GridLayout(3, 1));
-
-        // 画像を添付
-        ImageIcon g1 = new ImageIcon("images/300x300/a_legends_poke.jpg");
-        JLabel label = new JLabel(g1);
-
-        // 画像をパネルに追加
-        imagePanel.add(label);
-
-        // 本編と外伝ボタンクリック時のアクション
-        buttonMS();
-
-        // 発売日と差のラベル関数
-        difference_label();
-
-        // 発売日
-        specificTime = LocalDateTime.of(2022, 1, 28, 0, 0, 0);
-        String specificTimeFormatted = specificTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-        specificTimeLabel.setText("発売日: " + specificTimeFormatted);
-
-        // 差を表示の仕方の関数
-        difference();
-
-        // 時間変換ボタン関数
-        conversion();
-
-        // ラベルをパネルに追加
-        timePanel.add(differenceLabel);
-        timePanel.add(specificTimeLabel);
-        timePanel.add(conversionButton);
-
-        // パネルをフレームに追加
-        getContentPane().add(imagePanel,BorderLayout.CENTER);
-        getContentPane().add(timePanel,BorderLayout.SOUTH);
 
         // レイアウトを再検討
         revalidate();
