@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URI;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -29,6 +30,9 @@ public class Poke_generation extends JFrame {
     
     // メニューボタンを定義
     JButton buttonS,buttonM;
+
+    // 画像クリックボタンを定義
+    JButton button1,button2,button3,button4;
 
     // ボタンクリックで時間変更するフラグを定義
     int flag = 1;
@@ -126,6 +130,61 @@ public class Poke_generation extends JFrame {
         });
     }
 
+    private void button1URL(String urls) {
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    // 開きたいURL
+                    URI uri = new URI(urls);
+                
+                    // デフォルトのブラウザでURLを開く
+                    if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+                        Desktop.getDesktop().browse(uri);
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+
+        button2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    // 開きたいURL
+                    URI uri = new URI(urls);
+                
+                    // デフォルトのブラウザでURLを開く
+                    if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+                        Desktop.getDesktop().browse(uri);
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+    }
+    
+    private void button2URL(String urls) {
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    // 開きたいURL
+                    URI uri = new URI(urls);
+                
+                    // デフォルトのブラウザでURLを開く
+                    if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+                        Desktop.getDesktop().browse(uri);
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+    }
+
     // 差を表示の仕方の関数
     private void difference() {
         // タイマーの設定 (1秒ごとに更新)
@@ -215,21 +274,22 @@ public class Poke_generation extends JFrame {
             "images/170x170/sword_poke.jpg",
             "images/170x170/scarlet_poke.jpg"
         };
+
         String[] labels = {
             "1世代", "2世代", "3世代", "4世代", "5世代", "6世代", "7世代", "8世代", "9世代"
         };
 
         // ボタンアクション
         ActionListener[] actions = {
-            e -> showGenerationPanel1x2("images/300x300/red_poke.jpg", "images/300x300/green_poke.jpg", LocalDateTime.of(1996, 2, 27, 0, 0)),
-            e -> showGenerationPanel1x2("images/300x300/gold_poke.jpg", "images/300x300/silver_poke.jpg", LocalDateTime.of(1999, 11, 21, 0, 0)),
-            e -> showGenerationPanel1x2("images/300x300/ruby_poke.jpg", "images/300x300/sapphire_poke.jpg", LocalDateTime.of(2002, 11, 21, 0, 0)),
-            e -> showGenerationPanel1x2("images/300x300/diamond_poke.jpg", "images/300x300/pearl_poke.jpg", LocalDateTime.of(2006, 9, 28, 0, 0)),
-            e -> showGenerationPanel1x2("images/300x300/black_poke.jpg", "images/300x300/white_poke.jpg", LocalDateTime.of(2010, 9, 18, 0, 0)),
-            e -> showGenerationPanel1x2("images/300x300/x_poke.jpg", "images/300x300/y_poke.jpg", LocalDateTime.of(2013, 10, 12, 0, 0)),
-            e -> showGenerationPanel1x2("images/300x300/sun_poke.jpg", "images/300x300/moon_poke.jpg", LocalDateTime.of(2016, 11, 18, 0, 0)),
-            e -> showGenerationPanel1x2("images/300x300/sword_poke.jpg", "images/300x300/shield_poke.jpg", LocalDateTime.of(2019, 11, 15, 0, 0)),
-            e -> showGenerationPanel1x2("images/300x300/scarlet_poke.jpg", "images/300x300/violet_poke.jpg", LocalDateTime.of(2022, 11, 18, 0, 0))
+            e -> showGenerationPanel1x2("images/300x300/red_poke.jpg", "images/300x300/green_poke.jpg","https://www.nintendo.co.jp/n02/dmg/apajapbj/index.html" ,LocalDateTime.of(1996, 2, 27, 0, 0)),
+            e -> showGenerationPanel1x2("images/300x300/gold_poke.jpg", "images/300x300/silver_poke.jpg","https://www.nintendo.co.jp/n02/dmg/kingin/index.html" ,LocalDateTime.of(1999, 11, 21, 0, 0)),
+            e -> showGenerationPanel1x2("images/300x300/ruby_poke.jpg", "images/300x300/sapphire_poke.jpg","https://www.nintendo.co.jp/n08/axvp/index.html" ,LocalDateTime.of(2002, 11, 21, 0, 0)),
+            e -> showGenerationPanel1x2("images/300x300/diamond_poke.jpg", "images/300x300/pearl_poke.jpg","https://www.nintendo.co.jp/ds/adaj/index.html" ,LocalDateTime.of(2006, 9, 28, 0, 0)),
+            e -> showGenerationPanel1x2("images/300x300/black_poke.jpg", "images/300x300/white_poke.jpg","https://www.nintendo.co.jp/ds/irbj/index.html" ,LocalDateTime.of(2010, 9, 18, 0, 0)),
+            e -> showGenerationPanel1x2("images/300x300/x_poke.jpg", "images/300x300/y_poke.jpg","https://www.nintendo.co.jp/3ds/ekjj/index.html" ,LocalDateTime.of(2013, 10, 12, 0, 0)),
+            e -> showGenerationPanel1x2("images/300x300/sun_poke.jpg", "images/300x300/moon_poke.jpg","https://www.pokemon.co.jp/ex/sun_moon/" ,LocalDateTime.of(2016, 11, 18, 0, 0)),
+            e -> showGenerationPanel1x2("images/300x300/sword_poke.jpg", "images/300x300/shield_poke.jpg","https://www.pokemon.co.jp/ex/sword_shield/" ,LocalDateTime.of(2019, 11, 15, 0, 0)),
+            e -> showGenerationPanel1x2("images/300x300/scarlet_poke.jpg", "images/300x300/violet_poke.jpg","https://www.pokemon.co.jp/ex/sv/ja/" ,LocalDateTime.of(2022, 11, 18, 0, 0))
         };
 
         // ボタン作成
@@ -298,7 +358,8 @@ public class Poke_generation extends JFrame {
         repaint();
     }
 
-    private void showGenerationPanel1x2(String imagePath1, String imagePath2, LocalDateTime releaseDate) {
+    // グリッドが1x2の時の関数
+    private void showGenerationPanel1x2(String imagePath1, String imagePath2, String urls,LocalDateTime releaseDate) {
         // もろもろ関数
         menu();
 
@@ -307,10 +368,13 @@ public class Poke_generation extends JFrame {
         JPanel timePanel = new JPanel(new GridLayout(3, 1));// 3x1のグリッドレイアウトを設定
 
         // 画像を添付・パネルに追加
-        JLabel label1 = new JLabel(new ImageIcon(imagePath1));
-        JLabel label2 = new JLabel(new ImageIcon(imagePath2));
-        imagePanel.add(label1);
-        imagePanel.add(label2);
+        button1 = new JButton(new ImageIcon(imagePath1));
+        button2 = new JButton(new ImageIcon(imagePath2));
+        imagePanel.add(button1);
+        imagePanel.add(button2);
+
+        // 作品画像をクリックした時のアクション
+        button1URL(urls);
 
         // 本編と外伝ボタンクリック時のアクション
         buttonMS();
@@ -343,7 +407,8 @@ public class Poke_generation extends JFrame {
         repaint();
     }
 
-    private void showGenerationPanel1x1(String imagePath1,LocalDateTime releaseDate) {
+    // グリッドが1x1の時の関数
+    private void showGenerationPanel1x1(String imagePath1,String urls,LocalDateTime releaseDate) {
         // もろもろ関数
         menu();
 
@@ -352,8 +417,11 @@ public class Poke_generation extends JFrame {
         JPanel timePanel = new JPanel(new GridLayout(3, 1));// 3x1のグリッドレイアウトを設定
 
         // 画像を添付・パネルに追加
-        JLabel label1 = new JLabel(new ImageIcon(imagePath1));
-        imagePanel.add(label1);
+        button1 = new JButton(new ImageIcon(imagePath1));
+        imagePanel.add(button1);
+
+        // 作品画像をクリックした時のアクション
+        button2URL(urls);
 
         // 本編と外伝ボタンクリック時のアクション
         buttonMS();
@@ -409,10 +477,10 @@ public class Poke_generation extends JFrame {
 
         // ボタンアクション
         ActionListener[] actions = {
-            e -> showGenerationPanel1x1("images/300x300/blue_poke.jpg",LocalDateTime.of(1996, 10, 15, 0, 0, 0)), 
-            e -> showGenerationPanel1x1("images/300x300/stadium_poke.jpg",LocalDateTime.of(1998, 8, 1, 0, 0, 0)), 
-            e -> showGenerationPanel1x1("images/300x300/pika_poke.jpg",LocalDateTime.of(1998, 9, 12, 0, 0, 0)), 
-            e -> showGenerationPanel1x1("images/300x300/gb_poke.jpg",LocalDateTime.of(1998, 12, 18, 0, 0, 0)), 
+            e -> showGenerationPanel1x1("images/300x300/blue_poke.jpg","https://www.nintendo.co.jp/n02/dmg/apej/index.html",LocalDateTime.of(1996, 10, 15, 0, 0, 0)), 
+            e -> showGenerationPanel1x1("images/300x300/stadium_poke.jpg","https://www.nintendo.co.jp/n01/n64/software/nus_p_npsj/index.html",LocalDateTime.of(1998, 8, 1, 0, 0, 0)), 
+            e -> showGenerationPanel1x1("images/300x300/pika_poke.jpg","https://www.nintendo.co.jp/n02/dmg/apsj/index.html",LocalDateTime.of(1998, 9, 12, 0, 0, 0)), 
+            e -> showGenerationPanel1x1("images/300x300/gb_poke.jpg","https://www.nintendo.co.jp/n02/dmg/acxj/index.html",LocalDateTime.of(1998, 12, 18, 0, 0, 0)), 
         };
 
         // ボタン作成
@@ -462,18 +530,18 @@ public class Poke_generation extends JFrame {
 
         // ボタンアクション
         ActionListener[] actions = {
-            e -> showGenerationPanel1x1("images/300x300/crystal_poke.jpg",LocalDateTime.of(2000, 12, 14, 0, 0, 0)), 
-            e -> showGenerationPanel1x1("images/300x300/gb2_poke.jpg",LocalDateTime.of(2001, 3, 28, 0, 0, 0)), 
-            e -> showGenerationPanel1x1("images/300x300/coliseum_poke.jpg",LocalDateTime.of(2003, 11, 21, 0, 0, 0)), 
-            e -> showGenerationPanel1x2("images/300x300/r_red_poke.jpg", "images/300x300/r_green_poke.jpg", LocalDateTime.of(2004, 1, 29, 0, 0)),
-            e -> showGenerationPanel1x1("images/300x300/emerald_poke.jpg",LocalDateTime.of(2004, 9, 16, 0, 0, 0)),
-            e -> showGenerationPanel1x1("images/300x300/xd_poke.jpg",LocalDateTime.of(2005, 8, 4, 0, 0, 0)),
-            e -> showGenerationPanel1x2("images/300x300/wonder_blue_poke.jpg", "images/300x300/wonder_red_poke.jpg", LocalDateTime.of(2005, 11, 17, 0, 0)),
-            e -> showGenerationPanel1x1("images/300x300/ranger_poke.png",LocalDateTime.of(2006, 3, 23, 0, 0, 0)), 
-            e -> showGenerationPanel1x2("images/300x300/wonder_time_poke.png", "images/300x300/wonder_dark_poke.png", LocalDateTime.of(2007, 9, 13, 0, 0)),
-            e -> showGenerationPanel1x1("images/300x300/platinum_poke.png",LocalDateTime.of(2008, 9, 13, 0, 0, 0)), 
-            e -> showGenerationPanel1x1("images/300x300/wonder_sky_poke.jpg",LocalDateTime.of(2009, 4, 18, 0, 0, 0)), 
-            e -> showGenerationPanel1x2("images/300x300/r_gold_poke.jpg", "images/300x300/r_silver_poke.jpg", LocalDateTime.of(2009, 9, 12, 0, 0))
+            e -> showGenerationPanel1x1("images/300x300/crystal_poke.jpg","https://www.nintendo.co.jp/n02/dmg/bxpj/index.html",LocalDateTime.of(2000, 12, 14, 0, 0, 0)), 
+            e -> showGenerationPanel1x1("images/300x300/gb2_poke.jpg","https://www.pokemon.co.jp/game/other/gbc-gr/",LocalDateTime.of(2001, 3, 28, 0, 0, 0)), 
+            e -> showGenerationPanel1x1("images/300x300/coliseum_poke.jpg","https://www.nintendo.co.jp/ngc/qc6a/index.html",LocalDateTime.of(2003, 11, 21, 0, 0, 0)), 
+            e -> showGenerationPanel1x2("images/300x300/r_red_poke.jpg", "images/300x300/r_green_poke.jpg", "https://www.nintendo.co.jp/n08/bprj/index.html",LocalDateTime.of(2004, 1, 29, 0, 0)),
+            e -> showGenerationPanel1x1("images/300x300/emerald_poke.jpg","https://www.nintendo.co.jp/n08/bpej/index.html",LocalDateTime.of(2004, 9, 16, 0, 0, 0)),
+            e -> showGenerationPanel1x1("images/300x300/xd_poke.jpg","https://www.nintendo.co.jp/ngc/gxxj/index.html",LocalDateTime.of(2005, 8, 4, 0, 0, 0)),
+            e -> showGenerationPanel1x2("images/300x300/wonder_blue_poke.jpg", "images/300x300/wonder_red_poke.jpg","https://www.nintendo.co.jp/ds/aphjb24j/index.html",LocalDateTime.of(2005, 11, 17, 0, 0)),
+            e -> showGenerationPanel1x1("images/300x300/ranger_poke.png","https://www.nintendo.co.jp/ds/argj/index.html",LocalDateTime.of(2006, 3, 23, 0, 0, 0)), 
+            e -> showGenerationPanel1x2("images/300x300/wonder_time_poke.png", "images/300x300/wonder_dark_poke.png","https://www.nintendo.co.jp/ds/yftj_yfyj/index.html",LocalDateTime.of(2007, 9, 13, 0, 0)),
+            e -> showGenerationPanel1x1("images/300x300/platinum_poke.png","https://www.nintendo.co.jp/ds/cpuj/index.html",LocalDateTime.of(2008, 9, 13, 0, 0, 0)), 
+            e -> showGenerationPanel1x1("images/300x300/wonder_sky_poke.jpg","https://www.nintendo.co.jp/ds/c2sj/index.html",LocalDateTime.of(2009, 4, 18, 0, 0, 0)), 
+            e -> showGenerationPanel1x2("images/300x300/r_gold_poke.jpg", "images/300x300/r_silver_poke.jpg","https://www.nintendo.co.jp/ds/ipkj/index.html",LocalDateTime.of(2009, 9, 12, 0, 0))
         };
 
         // ボタン作成
@@ -517,14 +585,14 @@ public class Poke_generation extends JFrame {
 
         // ボタンアクション
         ActionListener[] actions = {
-            e -> showGenerationPanel1x2("images/300x300/black2_poke.jpg", "images/300x300/white2_poke.jpg", LocalDateTime.of(2012, 6, 23, 0, 0)),
-            e -> showGenerationPanel1x2("images/300x300/r_ruby_poke.jpg", "images/300x300/r_sapphire_poke.jpg", LocalDateTime.of(2014, 11, 21, 0, 0)),
-            e -> showGenerationPanel1x1("images/300x300/wonder_hyper_poke.jpg",LocalDateTime.of(2015, 9, 17, 0, 0, 0)),
+            e -> showGenerationPanel1x2("images/300x300/black2_poke.jpg","images/300x300/white2_poke.jpg","https://www.nintendo.co.jp/ds/irej/index.html",LocalDateTime.of(2012, 6, 23, 0, 0)),
+            e -> showGenerationPanel1x2("images/300x300/r_ruby_poke.jpg","images/300x300/r_sapphire_poke.jpg","https://www.nintendo.co.jp/3ds/ecrj/index.html",LocalDateTime.of(2014, 11, 21, 0, 0)),
+            e -> showGenerationPanel1x1("images/300x300/wonder_hyper_poke.jpg","https://www.nintendo.co.jp/3ds/bpxj/index.html",LocalDateTime.of(2015, 9, 17, 0, 0, 0)),
             e -> vc1(),
-            e -> showGenerationPanel1x2("images/300x300/vc_gold_poke.png", "images/300x300/vc_silver_poke.png", LocalDateTime.of(2017, 9, 22, 0, 0)),
-            e -> showGenerationPanel1x2("images/300x300/usun_poke.jpg", "images/300x300/umoo_poke.jpg", LocalDateTime.of(2017, 11, 17, 0, 0)),
-            e -> showGenerationPanel1x1("images/300x300/vc_crystal_poke.png",LocalDateTime.of(2018, 1, 26, 0, 0, 0)),
-            e -> showGenerationPanel1x2("images/300x300/r_pika_poke.jpg", "images/300x300/r_eev.jpg", LocalDateTime.of(2018, 11, 16, 0, 0))
+            e -> showGenerationPanel1x2("images/300x300/vc_gold_poke.png", "images/300x300/vc_silver_poke.png","https://www.pokemon.co.jp/ex/VCKG/0818_01/",LocalDateTime.of(2017, 9, 22, 0, 0)),
+            e -> showGenerationPanel1x2("images/300x300/usun_poke.jpg", "images/300x300/umoo_poke.jpg","https://www.pokemon.co.jp/ex/usum/",LocalDateTime.of(2017, 11, 17, 0, 0)),
+            e -> showGenerationPanel1x1("images/300x300/vc_crystal_poke.png","https://www.pokemon.co.jp/ex/VCCR/",LocalDateTime.of(2018, 1, 26, 0, 0, 0)),
+            e -> showGenerationPanel1x2("images/300x300/r_pika_poke.jpg", "images/300x300/r_eev.jpg","https://www.pokemon.co.jp/ex/VCAMAP/",LocalDateTime.of(2018, 11, 16, 0, 0))
         };
 
         // ボタン作成
@@ -553,19 +621,19 @@ public class Poke_generation extends JFrame {
 
         // 画像を添付
         ImageIcon g1 = new ImageIcon("images/300x300/vc_red_poke.png");
-        JLabel label = new JLabel(g1);
+        JLabel label1 = new JLabel(g1);
         ImageIcon g2 = new ImageIcon("images/300x300/vc_green_poke.png");
-        JLabel label1 = new JLabel(g2);
+        JLabel label2 = new JLabel(g2);
         ImageIcon g3 = new ImageIcon("images/300x300/vc_blue_poke.png");
-        JLabel label2 = new JLabel(g3);
+        JLabel label3 = new JLabel(g3);
         ImageIcon g4 = new ImageIcon("images/300x300/vc_pika_poke.png");
-        JLabel label3 = new JLabel(g4);
+        JLabel label4 = new JLabel(g4);
 
         // 画像をパネルに追加
-        imagePanel.add(label);
         imagePanel.add(label1);
         imagePanel.add(label2);
         imagePanel.add(label3);
+        imagePanel.add(label4);
 
         // 本編と外伝ボタンクリック時のアクション
         buttonMS();
@@ -619,8 +687,8 @@ public class Poke_generation extends JFrame {
 
         // ボタンアクション
         ActionListener[] actions = {
-            e -> showGenerationPanel1x2("images/300x300/r_diamond_poke.jpg", "images/300x300/r_pearl_poke.jpg", LocalDateTime.of(2021, 11, 19, 0, 0)),
-            e -> showGenerationPanel1x1("images/300x300/a_legends_poke.jpg",LocalDateTime.of(2022, 1, 28, 0, 0, 0))
+            e -> showGenerationPanel1x2("images/300x300/r_diamond_poke.jpg","images/300x300/r_pearl_poke.jpg","https://www.pokemon.co.jp/ex/bdsp/ja/",LocalDateTime.of(2021, 11, 19, 0, 0)),
+            e -> showGenerationPanel1x1("images/300x300/a_legends_poke.jpg","https://www.pokemon.co.jp/ex/legends_arceus/ja/",LocalDateTime.of(2022, 1, 28, 0, 0, 0))
         };
 
         // ボタン作成
