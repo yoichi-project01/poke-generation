@@ -32,7 +32,7 @@ public class Poke_generation extends JFrame {
     JButton buttonS,buttonM;
 
     // 画像クリックボタンを定義
-    JButton button1,button2,button3,button4;
+    JButton button1,button2;
 
     // ボタンクリックで時間変更するフラグを定義
     int flag = 1;
@@ -616,7 +616,7 @@ public class Poke_generation extends JFrame {
         menu();
 
         // 画像パネルを作成
-        JPanel imagePanel = new JPanel(new GridLayout(1, 2));
+        JPanel imagePanel = new JPanel(new GridLayout(1, 4));
 
         // 時刻パネルを作成
         JPanel timePanel = new JPanel(new GridLayout(3, 1));
