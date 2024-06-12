@@ -130,6 +130,7 @@ public class Poke_generation extends JFrame {
         });
     }
 
+    // 画像クリック時のアクション
     private void button1URL(String urls) {
         button1.addActionListener(new ActionListener() {
             @Override
@@ -166,6 +167,7 @@ public class Poke_generation extends JFrame {
         });
     }
     
+    // 画像クリック時のアクション
     private void button2URL(String urls) {
         button1.addActionListener(new ActionListener() {
             @Override
@@ -592,7 +594,7 @@ public class Poke_generation extends JFrame {
             e -> showGenerationPanel1x2("images/300x300/vc_gold_poke.png", "images/300x300/vc_silver_poke.png","https://www.pokemon.co.jp/ex/VCKG/0818_01/",LocalDateTime.of(2017, 9, 22, 0, 0)),
             e -> showGenerationPanel1x2("images/300x300/usun_poke.jpg", "images/300x300/umoo_poke.jpg","https://www.pokemon.co.jp/ex/usum/",LocalDateTime.of(2017, 11, 17, 0, 0)),
             e -> showGenerationPanel1x1("images/300x300/vc_crystal_poke.png","https://www.pokemon.co.jp/ex/VCCR/",LocalDateTime.of(2018, 1, 26, 0, 0, 0)),
-            e -> showGenerationPanel1x2("images/300x300/r_pika_poke.jpg", "images/300x300/r_eev.jpg","https://www.pokemon.co.jp/ex/VCAMAP/",LocalDateTime.of(2018, 11, 16, 0, 0))
+            e -> showGenerationPanel1x2("images/300x300/r_pika_poke.jpg", "images/300x300/r_eev.jpg","https://www.pokemon.co.jp/ex/pika_vee/",LocalDateTime.of(2018, 11, 16, 0, 0))
         };
 
         // ボタン作成
@@ -620,20 +622,85 @@ public class Poke_generation extends JFrame {
         JPanel timePanel = new JPanel(new GridLayout(3, 1));
 
         // 画像を添付
-        ImageIcon g1 = new ImageIcon("images/300x300/vc_red_poke.png");
-        JLabel label1 = new JLabel(g1);
-        ImageIcon g2 = new ImageIcon("images/300x300/vc_green_poke.png");
-        JLabel label2 = new JLabel(g2);
-        ImageIcon g3 = new ImageIcon("images/300x300/vc_blue_poke.png");
-        JLabel label3 = new JLabel(g3);
-        ImageIcon g4 = new ImageIcon("images/300x300/vc_pika_poke.png");
-        JLabel label4 = new JLabel(g4);
+        JButton b1 = new JButton(new ImageIcon("images/300x300/vc_red_poke.png"));
+        JButton b2 = new JButton(new ImageIcon("images/300x300/vc_green_poke.png"));
+        JButton b3 = new JButton(new ImageIcon("images/300x300/vc_blue_poke.png"));
+        JButton b4 = new JButton(new ImageIcon("images/300x300/vc_pika_poke.png"));
 
         // 画像をパネルに追加
-        imagePanel.add(label1);
-        imagePanel.add(label2);
-        imagePanel.add(label3);
-        imagePanel.add(label4);
+        imagePanel.add(b1);
+        imagePanel.add(b2);
+        imagePanel.add(b3);
+        imagePanel.add(b4);
+
+        // 画像クリック時のアクション
+        b1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    // 開きたいURL
+                    URI uri = new URI("https://www.pokemon.co.jp/ex/VCAMAP/");
+                
+                    // デフォルトのブラウザでURLを開く
+                    if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+                        Desktop.getDesktop().browse(uri);
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+
+        b2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    // 開きたいURL
+                    URI uri = new URI("https://www.pokemon.co.jp/ex/VCAMAP/");
+                
+                    // デフォルトのブラウザでURLを開く
+                    if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+                        Desktop.getDesktop().browse(uri);
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+
+        b3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    // 開きたいURL
+                    URI uri = new URI("https://www.pokemon.co.jp/ex/VCAMAP/");
+                
+                    // デフォルトのブラウザでURLを開く
+                    if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+                        Desktop.getDesktop().browse(uri);
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+
+        b4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    // 開きたいURL
+                    URI uri = new URI("https://www.pokemon.co.jp/ex/VCAMAP/");
+                
+                    // デフォルトのブラウザでURLを開く
+                    if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+                        Desktop.getDesktop().browse(uri);
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
 
         // 本編と外伝ボタンクリック時のアクション
         buttonMS();

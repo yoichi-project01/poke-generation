@@ -1,9 +1,9 @@
 /*/**
  * レビュアー
  * D.K
- * H.K
  * S.K
- * 
+ * S.K
+ * T.T
  */
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
