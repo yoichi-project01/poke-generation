@@ -1,14 +1,24 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.net.URI;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 
 public class Poke_generation extends JFrame {
+    // スクリーンショットを保存するディレクトリを指定
+    String directoryPath = "screenshots/";
+
+    // 現在時刻を定義
+    LocalDateTime now;
 
     // フォントの設定
     Font newFont = new Font("M S ゴシック", Font.BOLD, 20);
@@ -30,6 +40,12 @@ public class Poke_generation extends JFrame {
     
     // メニューボタンを定義
     JButton buttonS,buttonM;
+
+    // スクリーンショットボタンを定義
+    JButton ssButton;
+
+    // sクリーンショットの内容を定義
+    BufferedImage image;
 
     // 画像クリックボタンを定義
     JButton button1,button2;
@@ -62,6 +78,21 @@ public class Poke_generation extends JFrame {
         buttonS.setFont(new Font("M S ゴシック",Font.BOLD,15));
         buttonM.setPreferredSize(buttonsize);
         buttonS.setPreferredSize(buttonsize);
+
+        // 本編・外編ボタンクリック時のアクション
+        buttonM.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                main();
+            }
+        });
+
+        buttonS.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                sub();
+            }
+        });
         
         // ボタンをパネルに追加
         menuPanel.add(buttonM);
@@ -72,10 +103,17 @@ public class Poke_generation extends JFrame {
         timeLabel.setFont(new Font("Arial",Font.BOLD,30));
         menuPanel.add(timeLabel);
 
-        // GIFを追加
-        ImageIcon image = new ImageIcon("images/myu.gif");
-        JLabel imageLabel = new JLabel(image);
-        menuPanel.add(imageLabel);
+        // スクリーンショットボタンを追加
+        ssButton= new JButton("スクショ");
+        menuPanel.add(ssButton);
+
+        // スクリーンショットボタンクリック時のアクション
+        ssButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                takeScreenshot();
+            }
+        });
 
         // タイマーの設定 (1000ミリ秒ごとに更新)
         Timer timer = new Timer(1000, e -> updateTime());
@@ -112,22 +150,32 @@ public class Poke_generation extends JFrame {
             }
         });
     }
-    
-    // 本編と外伝ボタンクリック時のアクション
-    private void buttonMS() {
-        buttonM.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                main();
-            }
-        });
 
-        buttonS.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e){
-                sub();
+    // スクリーンショット
+    private void takeScreenshot() {
+        try {
+            File directory = new File(directoryPath);
+            if (!directory.exists()) {
+                directory.mkdirs(); // ディレクトリが存在しない場合は作成
             }
-        });
+
+            // 現在時刻をフォーマットしてファイル名を作成
+            String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+            String fileName = directoryPath + timeStamp + ".png";
+
+            // JFrameの内容を取得
+            BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2d = image.createGraphics();
+            paint(g2d);
+            g2d.dispose();
+
+            // 画像をファイルに保存
+            File file = new File(fileName);
+            ImageIO.write(image, "png", file);
+            JOptionPane.showMessageDialog(this, "スクリーンショットを撮ったよ");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     // 画像クリック時のアクション
@@ -300,13 +348,6 @@ public class Poke_generation extends JFrame {
             gPanel.add(button);
         }
 
-        buttonS.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                sub();
-            }
-        });
-
         // パネルをフレームに追加
         getContentPane().add(gPanel);
 
@@ -344,14 +385,6 @@ public class Poke_generation extends JFrame {
             gPanel.add(button);
         }
 
-        // ボタンクリックアクション
-        buttonM.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                main();
-            }
-        });
-
         // パネルをフレームに追加
         getContentPane().add(gPanel);
 
@@ -377,9 +410,6 @@ public class Poke_generation extends JFrame {
 
         // 作品画像をクリックした時のアクション
         button1URL(urls);
-
-        // 本編と外伝ボタンクリック時のアクション
-        buttonMS();
 
         // 発売日と差のラベル関数
         difference_label();
@@ -425,9 +455,6 @@ public class Poke_generation extends JFrame {
         // 作品画像をクリックした時のアクション
         button2URL(urls);
 
-        // 本編と外伝ボタンクリック時のアクション
-        buttonMS();
-
         // 発売日と差のラベル関数
         difference_label();
 
@@ -459,9 +486,6 @@ public class Poke_generation extends JFrame {
     private void g1sub(){
         // もろもろ関数
         menu();
-
-        // 本編と外伝ボタンクリック時のアクション
-        buttonMS();
 
         // 世代パネルを作成
         JPanel gPanel = new JPanel(new GridLayout(2, 2));// 2x2のグリッドレイアウトを設定
@@ -503,9 +527,6 @@ public class Poke_generation extends JFrame {
 
         // もろもろ関数
         menu();
-
-        // 本編と外伝ボタンクリック時のアクション
-        buttonMS();
 
         // 世代パネルを作成
         JPanel gPanel = new JPanel(new GridLayout(3, 4));// 3x4のグリッドレイアウトを設定
@@ -563,9 +584,6 @@ public class Poke_generation extends JFrame {
     private void g3sub(){
         // もろもろ関数
         menu();
-
-        // 本編と外伝ボタンクリック時のアクション
-        buttonMS();
 
         // 世代パネルを作成
         JPanel gPanel = new JPanel(new GridLayout(2, 4));// 3x4のグリッドレイアウトを設定
@@ -702,9 +720,6 @@ public class Poke_generation extends JFrame {
             }
         });
 
-        // 本編と外伝ボタンクリック時のアクション
-        buttonMS();
-
         // 発売日と差のラベル関数
         difference_label();
 
@@ -736,9 +751,6 @@ public class Poke_generation extends JFrame {
     private void g4sub(){
         // もろもろ関数
         menu();
-
-        // 本編と外伝ボタンクリック時のアクション
-        buttonMS();
 
         // 世代パネルを作成
         JPanel gPanel = new JPanel(new GridLayout(1, 2));// 1x2のグリッドレイアウトを設定
@@ -785,7 +797,7 @@ public class Poke_generation extends JFrame {
 
     // 現在時刻を更新するメソッド
     private void updateTime() {
-        LocalDateTime now = LocalDateTime.now();
+        now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss                                   ");
         timeLabel.setText(now.format(formatter));
     }
