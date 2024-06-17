@@ -9,7 +9,7 @@
 - [変換ボタン](#変換ボタン)
 # [概要](#概要)
 **ポケモンのゲームが発売されてから現在時刻との差を色々な形式で表示するプログラムです。**
-![スクリーンショット 2024-06-03 134256](https://github.com/yoichi-project01/poke-generation/assets/98115836/9dc6591a-e024-489d-9519-e6bf6f3854ed)
+![スクリーンショット 2024-06-17 152922](https://github.com/yoichi-project01/poke-generation/assets/98115836/c1537d4b-1b6e-42eb-be5c-4c7b6de6b1c4)
 # [メニュー](#メニュー)
 ![スクリーンショット_2024-06-03_135104-removebg-preview](https://github.com/yoichi-project01/poke-generation/assets/98115836/41111adf-6018-4b3b-bd59-47560d92ad6a)  
 **①：[本編ボタン](#本編)をクリックすると本編ページに遷移する。  
