@@ -23,7 +23,8 @@
 ![y](https://github.com/yoichi-project01/poke-generation/assets/98115836/452cd764-362a-4426-be0b-cbb55d4c1c8e)  
 **OKをクリックする**
 ![u](https://github.com/yoichi-project01/poke-generation/assets/98115836/eded00f4-91f5-456d-9ca8-e0ffd4a733a6)  
-**すると、screenshotsフォルダーに保存される。**
+**すると、screenshotsフォルダーに保存される。**  
+![i](https://github.com/yoichi-project01/poke-generation/assets/98115836/ea622c11-f18e-47a5-9756-afdf51fbb21f)
 # [本編](#本編)
 ![a](https://github.com/yoichi-project01/poke-generation/assets/98115836/61ae0f12-6b02-42be-bae2-745a4c0a13e2)  
 **各[世代ボタン](#タイトル)をクリックするとその世代のページに遷移する。**  
