@@ -57,6 +57,13 @@ public class Poke_generation extends JFrame {
         // 初期画面を表示
         main();
     }
+
+    // 現在時刻を更新するメソッド
+    private void updateTime() {
+        now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss                                   ");
+        timeLabel.setText(now.format(formatter));
+    }
     
     // もろもろ関数
     private void menu() {
@@ -131,6 +138,17 @@ public class Poke_generation extends JFrame {
         specificTimeLabel = new JLabel();
         specificTimeLabel.setFont(new Font("M S ゴシック",Font.BOLD,30));
         specificTimeLabel.setHorizontalAlignment(JLabel.CENTER);
+    }
+
+    // 本編・外伝ボタン関数
+    private JButton createButton(String label, String imagePath, ActionListener action) {
+        ImageIcon icon = new ImageIcon(imagePath);
+        JButton button = new JButton(label, icon);
+        button.setFont(newFont);
+        button.setHorizontalTextPosition(SwingConstants.CENTER);
+        button.setVerticalTextPosition(SwingConstants.BOTTOM);
+        button.addActionListener(action);
+        return button;
     }
 
     // 時間変換ボタン関数
@@ -782,23 +800,5 @@ public class Poke_generation extends JFrame {
         // レイアウトを再検討
         revalidate();
         repaint();
-    }
-
-    // 本編・外伝ボタン関数
-    private JButton createButton(String label, String imagePath, ActionListener action) {
-        ImageIcon icon = new ImageIcon(imagePath);
-        JButton button = new JButton(label, icon);
-        button.setFont(newFont);
-        button.setHorizontalTextPosition(SwingConstants.CENTER);
-        button.setVerticalTextPosition(SwingConstants.BOTTOM);
-        button.addActionListener(action);
-        return button;
-    }
-
-    // 現在時刻を更新するメソッド
-    private void updateTime() {
-        now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss                                   ");
-        timeLabel.setText(now.format(formatter));
     }
 }
