@@ -18,6 +18,7 @@
 ③：現在時刻を表示  
 ④：[スクリーンショット](#スクリーンショット)をクリックするとスクリーンショットを撮る**  
 # [スクリーンショット](#スクリーンショット)
+![スクリーンショット 2024-06-17 155944](https://github.com/yoichi-project01/poke-generation/assets/98115836/ef1cd83e-65eb-4cfa-a8d6-81e01dc8d6c6)  
 # [本編](#本編)
 ![a](https://github.com/yoichi-project01/poke-generation/assets/98115836/61ae0f12-6b02-42be-bae2-745a4c0a13e2)  
 **各[世代ボタン](#タイトル)をクリックするとその世代のページに遷移する。**  
