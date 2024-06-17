@@ -19,6 +19,9 @@
 ④：[スクリーンショット](#スクリーンショット)をクリックするとスクリーンショットを撮る**  
 # [スクリーンショット](#スクリーンショット)
 ![スクリーンショット 2024-06-17 155944](https://github.com/yoichi-project01/poke-generation/assets/98115836/ef1cd83e-65eb-4cfa-a8d6-81e01dc8d6c6)  
+![i](https://github.com/yoichi-project01/poke-generation/assets/98115836/8f93d96a-b15b-4fb4-92a8-00777da1a3eb)  
+![u](https://github.com/yoichi-project01/poke-generation/assets/98115836/8b7f91f5-0009-4592-ae3d-70fcfb0a2bf0)  
+![y](https://github.com/yoichi-project01/poke-generation/assets/98115836/0e933014-3d1e-477a-87f3-3ea458f4e83b)  
 # [本編](#本編)
 ![a](https://github.com/yoichi-project01/poke-generation/assets/98115836/61ae0f12-6b02-42be-bae2-745a4c0a13e2)  
 **各[世代ボタン](#タイトル)をクリックするとその世代のページに遷移する。**  
